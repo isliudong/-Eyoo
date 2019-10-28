@@ -84,10 +84,10 @@
 	</update>
 
 	<!-- 微博数 -->
-	<select id="queryWeiboCount" parameterType="int" resultType="int">
+	<select id="queryeyooCount" parameterType="int" resultType="int">
 		SELECT COUNT(*)
-		FROM weibo
-		WHERE weibo.user_id=#{id}
+		FROM eyoo
+		WHERE eyoo.user_id=#{id}
 	</select>
 
 	<!-- 关注数 -->
@@ -112,10 +112,10 @@
 	<!-- 查询用户被转发数 -->
 	<select id="queryRepostCount" parameterType="Integer" resultType="int">
 		SELECT COUNT(*)
-		FROM weibo
+		FROM eyoo
 		WHERE repost_id IN (
-		SELECT weibo_id 
-		FROM weibo
+		SELECT eyoo_id 
+		FROM eyoo
 		WHERE user_id = #{userId}
 		)
 	</select>

@@ -13,8 +13,8 @@
 		<result column="from_face" property="from_face"/>
 		<result column="to_face" property="to_face"/>
 		
-		<association property="weibo" javaType="po.Weibo">
-			<id column="weibo_id" property="weiboId" jdbcType="INTEGER" />
+		<association property="eyoo" javaType="po.eyoo">
+			<id column="eyoo_id" property="eyooId" jdbcType="INTEGER" />
 			<result column="user_id" property="userId" jdbcType="INTEGER" />
 			<result column="post_time" property="postTime" jdbcType="TIMESTAMP" />
 			<result column="content" property="content" jdbcType="VARCHAR" />
@@ -42,8 +42,8 @@
 	</delete>
 	
 	<select id="queryReplyByUserId" parameterType="int" resultMap="ReplyResultMap">
-	SELECT u1.face as from_face,u1.nickname as 'from',u2.face as to_face,u2.nickname as 'to',r.reply_content,r.time,w.content,w.weibo_id
-	FROM reply AS r LEFT JOIN COMMENT AS c ON(r.comment_id=c.comment_id) LEFT JOIN weibo AS w ON(c.weibo_id=w.weibo_id),
+	SELECT u1.face as from_face,u1.nickname as 'from',u2.face as to_face,u2.nickname as 'to',r.reply_content,r.time,w.content,w.eyoo_id
+	FROM reply AS r LEFT JOIN COMMENT AS c ON(r.comment_id=c.comment_id) LEFT JOIN eyoo AS w ON(c.eyoo_id=w.eyoo_id),
 	USER AS u1, USER AS u2
 	WHERE u1.user_id=r.from_id AND u2.user_id=r.to_id AND r.to_id=#{params.userId} ORDER BY r.time DESC
 	</select>

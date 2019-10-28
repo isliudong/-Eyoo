@@ -25,11 +25,11 @@ import po.Relation;
 import po.User;
 import po.UserCustom;
 import po.UserVo;
-import po.WeiboCustom;
+import po.eyooCustom;
 import service.MentionService;
 import service.RelationService;
 import service.UserService;
-import service.WeiboService;
+import service.eyooService;
 import utils.DateConvert;
 import utils.VerifyCode;
 
@@ -40,9 +40,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	// WeiboService
+	// eyooService
 	@Autowired
-	private WeiboService weiboService;
+	private eyooService eyooService;
 
 	// date格式化工具类
 	DateConvert dateConvert;
@@ -162,12 +162,12 @@ public class UserController {
 			user.setC(userService.queryPC(user.getCity()));
 
 			// 微博数wi
-			int weiboCount = userService.queryWeiboCount(user.getUserId());
+			int eyooCount = userService.queryeyooCount(user.getUserId());
 			// 关注
 			int followCount = userService.queryFollowCount(user.getUserId());
 			// 粉丝
 			int fansCount = userService.queryFansCount(user.getUserId());
-			user.setWeiboCount(weiboCount);
+			user.seteyooCount(eyooCount);
 			user.setFollowCount(followCount);
 			user.setFansCount(fansCount);
 
@@ -178,7 +178,7 @@ public class UserController {
 			user.setPassword(null);
 			session.setAttribute("user", user);
 			request.setAttribute("pageNo", 1);
-			return "forward:/queryAllWeiboNow.action?pageNo=1";
+			return "forward:/queryAlleyooNow.action?pageNo=1";
 		} else {
 			return "login";
 		}
@@ -248,12 +248,12 @@ public class UserController {
 		// 用户年龄
 		user.setAge(userService.calculateAge(user.getBir()));
 		// 微博数wi
-		int weiboCount = userService.queryWeiboCount(user.getUserId());
+		int eyooCount = userService.queryeyooCount(user.getUserId());
 		// 关注
 		int followCount = userService.queryFollowCount(user.getUserId());
 		// 粉丝
 		int fansCount = userService.queryFansCount(user.getUserId());
-		user.setWeiboCount(weiboCount);
+		user.seteyooCount(eyooCount);
 		user.setFollowCount(followCount);
 		user.setFansCount(fansCount);
 		// 所在地
@@ -316,19 +316,19 @@ public class UserController {
 
 		UserCustom user = (UserCustom) session.getAttribute("user");
 
-		Page<WeiboCustom> page = weiboService.qeuryByUserId(user.getUserId(), pageNo);
+		Page<eyooCustom> page = eyooService.qeuryByUserId(user.getUserId(), pageNo);
 		// sql.Date 转换
-		for (WeiboCustom weiboCustom : page.getResults()) {
+		for (eyooCustom eyooCustom : page.getResults()) {
 			// 将date格式化 精确到s
-			weiboCustom.setDate(dateConvert.convert2s(weiboCustom.getPostTime()));
+			eyooCustom.setDate(dateConvert.convert2s(eyooCustom.getPostTime()));
 			// 非原创 即属于转发微博
-			if (weiboCustom.getOriginal() == 0) {
-				WeiboCustom repostWeibo = weiboService.queryWeiboByWeiboId(weiboCustom.getRepostId()).get(0);
-				repostWeibo.setDate(dateConvert.convert2s(repostWeibo.getPostTime()));
-				weiboCustom.setRepost(repostWeibo);
+			if (eyooCustom.getOriginal() == 0) {
+				eyooCustom reposteyoo = eyooService.queryeyooByeyooId(eyooCustom.getRepostId()).get(0);
+				reposteyoo.setDate(dateConvert.convert2s(reposteyoo.getPostTime()));
+				eyooCustom.setRepost(reposteyoo);
 			}
 		}
-		model.addAttribute("weiboList", page.getResults());
+		model.addAttribute("eyooList", page.getResults());
 		page.setResults(null);
 		model.addAttribute("page", page);
 		// 读取 数据库中保存的 [上次退出时] 与我相关数
@@ -364,24 +364,24 @@ public class UserController {
 		model.addAttribute("relation", relation);
 
 		// 遍历微博
-		Page<WeiboCustom> page = weiboService.qeuryByUserId(userId,pageNo);
-		for (WeiboCustom weiboCustom : page.getResults()) {
-			weiboCustom.setDate(dateConvert.convert2s(weiboCustom.getPostTime()));
+		Page<eyooCustom> page = eyooService.qeuryByUserId(userId,pageNo);
+		for (eyooCustom eyooCustom : page.getResults()) {
+			eyooCustom.setDate(dateConvert.convert2s(eyooCustom.getPostTime()));
 			// 非原创 即属于转发微博
-			if (weiboCustom.getOriginal() == 0) {
-				WeiboCustom repostWeibo = weiboService.queryWeiboByWeiboId(weiboCustom.getRepostId()).get(0);
-				repostWeibo.setDate(dateConvert.convert2s(repostWeibo.getPostTime()));
-				weiboCustom.setRepost(repostWeibo);
+			if (eyooCustom.getOriginal() == 0) {
+				eyooCustom reposteyoo = eyooService.queryeyooByeyooId(eyooCustom.getRepostId()).get(0);
+				reposteyoo.setDate(dateConvert.convert2s(reposteyoo.getPostTime()));
+				eyooCustom.setRepost(reposteyoo);
 			}
 		}
-		model.addAttribute("weiboList", page.getResults());
+		model.addAttribute("eyooList", page.getResults());
 		// 微博数
-		int weiboCount = userService.queryWeiboCount(userId);
+		int eyooCount = userService.queryeyooCount(userId);
 		// 关注
 		int followCount = userService.queryFollowCount(userId);
 		// 粉丝
 		int fansCount = userService.queryFansCount(userId);
-		others.setWeiboCount(weiboCount);
+		others.seteyooCount(eyooCount);
 		others.setFollowCount(followCount);
 		others.setFansCount(fansCount);
 		// 所在地

@@ -18,7 +18,7 @@
 	<bean id="userService" class="service.impl.UserServiceImpl"></bean>
 	
 	<!-- 微博 -->
-	<bean id="weiboService" class="service.impl.WeiboServiceImpl"></bean>
+	<bean id="eyooService" class="service.impl.eyooServiceImpl"></bean>
 	
 	<!-- 用户关系 -->
 	<bean id="relationService" class="service.impl.RelationServiceImpl"></bean>

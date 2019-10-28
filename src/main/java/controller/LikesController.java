@@ -20,20 +20,20 @@ public class LikesController {
 	// 点赞
 	@RequestMapping(value="like" )
 	public void like(
-			@RequestParam("weiboId") int weiboId,
+			@RequestParam("eyooId") int eyooId,
 			HttpServletResponse response,
 			HttpSession session) throws Exception{
 		UserCustom user  = (UserCustom) session.getAttribute("user");
-		likesService.like(weiboId,user.getUserId());
+		likesService.like(eyooId,user.getUserId());
 	}
 	
 	// 取消赞
 	@RequestMapping(value="unlike")
 	public void unlike(
-			@RequestParam("weiboId") int weiboId,
+			@RequestParam("eyooId") int eyooId,
 			HttpServletResponse response,
 			HttpSession session) throws Exception{
 		UserCustom user  = (UserCustom) session.getAttribute("user");
-		likesService.unlike(weiboId,user.getUserId());
+		likesService.unlike(eyooId,user.getUserId());
 	}
 }

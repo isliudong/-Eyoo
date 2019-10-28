@@ -55,11 +55,11 @@ git clone https://github.com/yrucrew/ssm-demo.git
 
 创建数据库 运行sql文件
 
-> /weibo/src/main/resources/sql/weibo.sql
+> /eyoo/src/main/resources/sql/eyoo.sql
 
 修改成你的数据库配置
 
-> /weibo/src/main/resources/db.properties
+> /eyoo/src/main/resources/db.properties
 
 ##### 4 在Tomcat中配置虚拟路径
 
@@ -77,7 +77,7 @@ git clone https://github.com/yrucrew/ssm-demo.git
 
 ##### 5 （可选）把默认头像放到作为存储上传图片的目录下
 
-/weibo/src/main/resources/img/default.png
+/eyoo/src/main/resources/img/default.png
 
 这样注册时就会默认选中头像啦（看得比较舒服 你也可以自己配置
 
@@ -85,9 +85,9 @@ git clone https://github.com/yrucrew/ssm-demo.git
 
 启动Tomcat然后可以发微博啦！！！！
 
-> 前台http://localhost:8080/weibo/login.action
+> 前台http://localhost:8080/eyoo/login.action
 >
-> 后台http://localhost:8080/weibo/signin.action 默认admin admin（已写入sql
+> 后台http://localhost:8080/eyoo/signin.action 默认admin admin（已写入sql
 
 Ps：你的数据库是没有其他数据的 自行注册吧
 

@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService {
 
 	// 根据用户id查询用户的微博数
 	@Override
-	public int queryWeiboCount(Integer userId) throws Exception {
-		return userMapperCustom.queryWeiboCount(userId);
+	public int queryeyooCount(Integer userId) throws Exception {
+		return userMapperCustom.queryeyooCount(userId);
 	}
 
 	// 根据用户id查询用户的关注数

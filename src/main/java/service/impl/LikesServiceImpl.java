@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import mapper.LikesMapperCustom;
 import po.LikesCustom;
 import po.Page;
-import po.WeiboCustom;
+import po.eyooCustom;
 import service.LikesService;
 import utils.DateConvert;
 
@@ -24,10 +24,10 @@ public class LikesServiceImpl implements LikesService {
 
 	// 点赞
 	@Override
-	public void like(int weiboId, Integer userId) {
+	public void like(int eyooId, Integer userId) {
 		LikesCustom likes = new LikesCustom();
 		likes.setUserId(userId);
-		likes.setWeiboId(weiboId);
+		likes.seteyooId(eyooId);
 		Date likeTime = new java.sql.Date(new java.util.Date().getTime());
 		likes.setLikeTime(likeTime);
 		likesMapperCustom.like(likes);
@@ -35,19 +35,19 @@ public class LikesServiceImpl implements LikesService {
 
 	// 取消赞
 	@Override
-	public void unlike(int weiboId, Integer userId) {
+	public void unlike(int eyooId, Integer userId) {
 		LikesCustom likes = new LikesCustom();
 		likes.setUserId(userId);
-		likes.setWeiboId(weiboId);
+		likes.seteyooId(eyooId);
 		likesMapperCustom.unlike(likes);
 	}
 
 	// 查询是否赞
 	@Override
-	public int isLike(Integer userId, Integer weiboId) {
+	public int isLike(Integer userId, Integer eyooId) {
 		LikesCustom likes = new LikesCustom();
 		likes.setUserId(userId);
-		likes.setWeiboId(weiboId);
+		likes.seteyooId(eyooId);
 		List<LikesCustom> likesList = likesMapperCustom.queryIsLike(likes);
 		if (likesList.size() != 0) {
 			// 存在记录 已赞
@@ -78,12 +78,12 @@ public class LikesServiceImpl implements LikesService {
 	// 查询我赞过的微博
 	@SuppressWarnings("static-access")
 	@Override
-	public Page<LikesCustom> queryLikedWeiboSelf(Integer userId, int pageNo) {
+	public Page<LikesCustom> queryLikedeyooSelf(Integer userId, int pageNo) {
 		Page<LikesCustom> page = new Page<LikesCustom>();
 		page.setPageNo(pageNo);
 		page.setPageSize(8);
 		page.getParams().put("userId", userId);
-		List<LikesCustom> likesList = likesMapperCustom.queryLikedWeiboSelf(page);
+		List<LikesCustom> likesList = likesMapperCustom.queryLikedeyooSelf(page);
 		for (LikesCustom like : likesList) {
 			like.setDate(dateConvert.convert2s(like.getLikeTime()));
 		}

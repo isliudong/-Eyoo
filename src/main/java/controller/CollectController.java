@@ -23,13 +23,13 @@ public class CollectController {
 	// 收藏
 	@RequestMapping(value = "collect")
 	public void collect(
-			@RequestParam("weiboId") int weiboId,
+			@RequestParam("eyooId") int eyooId,
 			HttpServletResponse response,
 			HttpSession session) throws Exception {
 		UserCustom user = (UserCustom) session.getAttribute("user");
 		CollectCustom collection = new CollectCustom();
 		collection.setUserId(user.getUserId());
-		collection.setWeiboId(weiboId);
+		collection.seteyooId(eyooId);
 		// 收藏时间
 		Date time = new java.sql.Date(new java.util.Date().getTime());
 		collection.setCollectTime(time);
@@ -39,13 +39,13 @@ public class CollectController {
 	// 取消收藏
 	@RequestMapping(value = "uncollect")
 	public void uncollect(
-			@RequestParam("weiboId") int weiboId, 
+			@RequestParam("eyooId") int eyooId,
 			HttpServletResponse response,
 			HttpSession session) throws Exception {
 		UserCustom user = (UserCustom) session.getAttribute("user");
 		CollectCustom collection = new CollectCustom();
 		collection.setUserId(user.getUserId());
-		collection.setWeiboId(weiboId);
+		collection.seteyooId(eyooId);
 		collectService.uncollect(collection);
 	}
 

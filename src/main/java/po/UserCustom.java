@@ -24,18 +24,18 @@ public class UserCustom extends User {
 	private String c;
 
 	// 微博数
-	private int weiboCount;
+	private int eyooCount;
 	// 关注数
 	private int followCount;
 	// 粉丝数
 	private int fansCount;
 
-	public int getWeiboCount() {
-		return weiboCount;
+	public int geteyooCount() {
+		return eyooCount;
 	}
 
-	public void setWeiboCount(int weiboCount) {
-		this.weiboCount = weiboCount;
+	public void seteyooCount(int eyooCount) {
+		this.eyooCount = eyooCount;
 	}
 
 	public int getFollowCount() {

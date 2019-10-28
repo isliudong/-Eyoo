@@ -79,7 +79,7 @@
 			<br> <br>
 			<table align="center" style="table-layout: fixed;">
 				<tr>
-					<td><a href="queryUserPage.action?userId=${user.userId}">${user.weiboCount }微博&nbsp;</a></td>
+					<td><a href="queryUserPage.action?userId=${user.userId}">${user.eyooCount }微博&nbsp;</a></td>
 					<td><a href="listFollow.action?userId=${user.userId }">${user.followCount }关注&nbsp;</a></td>
 					<td><a href="listFans.action?userId=${user.userId }">${user.fansCount }粉丝</td>
 				</tr>
@@ -124,9 +124,9 @@
 						<p style="color: #999; font-size: 15px">${like.date }</p>
 						<!-- 简略微博内容 -->
 						<div style="background-color: #eaeaec;float: left;">
-							<a style="color: #333; float: left; font-size: 15px;">@${like.weibo_nickname }</a>
+							<a style="color: #333; float: left; font-size: 15px;">@${like.eyoo_nickname }</a>
 							<span style="color: #333;">&nbsp;:&nbsp;</span>
-							<a style="color: #333; font-size: 15px" href="singleWeibo.action?weiboId=${ like.weibo.weiboId}">${like.weibo.content }</a>
+							<a style="color: #333; font-size: 15px" href="singleeyoo.action?eyooId=${ like.eyoo.eyooId}">${like.eyoo.content }</a>
 						</div>
 					</div>
 				</div>
@@ -136,7 +136,7 @@
 				<!-- 分页 -->
 				<ul class="pagination pagination-lg">
 					<!-- 上一页 -->
-					<li><a href="queryAllWeibo.action?pageNo=${page.pageNo-1 }">&laquo;</a></li>
+					<li><a href="queryAlleyoo.action?pageNo=${page.pageNo-1 }">&laquo;</a></li>
 					<c:choose>
 						<%-- 第一条：如果总页数<=5，那么页码列表为1 ~ tp --%>
 						<c:when test="${page.totalPage <= 5 }">
@@ -166,11 +166,11 @@
 							<li class="active"><a href="#">${i}</a></li>
 						</c:if>
 						<c:if test="${i!=page.pageNo }">
-							<li><a href="queryAllWeibo.action?pageNo=${i }">${i}</a></li>
+							<li><a href="queryAlleyoo.action?pageNo=${i }">${i}</a></li>
 						</c:if>
 					</c:forEach>
 					<!-- 下一页 -->
-					<li><a href="queryAllWeibo.action?pageNo=${page.pageNo+1 }">&raquo;</a></li>
+					<li><a href="queryAlleyoo.action?pageNo=${page.pageNo+1 }">&raquo;</a></li>
 				</ul>
 			</div>
 
@@ -178,8 +178,8 @@
 	</div>
 	<script type="text/javascript">
 	//转发微博
-	function repost(weiboId) {
-		$('#Modal'+weiboId).modal('toggle');
+	function repost(eyooId) {
+		$('#Modal'+eyooId).modal('toggle');
 	}
 	
 	//跳至自己的主页
@@ -194,41 +194,41 @@
 	}
 	
 	//跳至所选微博页
-	function clickWeibo(weiboId) {
-		var url = "singleWeibo.action?weiboId=" + weiboId;
+	function clickeyoo(eyooId) {
+		var url = "singleeyoo.action?eyooId=" + eyooId;
 		window.open(url);
 	}
 	
-	function likes(weiboId) {
+	function likes(eyooId) {
 		//未赞——>已赞
-		var likeCount = $("#likeCount" + weiboId).text();
-		if($("#likespan"+weiboId).hasClass("glyphicon-heart-empty")){
-			$.get("${pageContext.request.contextPath }/like.action?weiboId=" + weiboId,null,function(data){
-				$("#likespan"+weiboId).attr("class","glyphicon glyphicon-heart");
+		var likeCount = $("#likeCount" + eyooId).text();
+		if($("#likespan"+eyooId).hasClass("glyphicon-heart-empty")){
+			$.get("${pageContext.request.contextPath }/like.action?eyooId=" + eyooId,null,function(data){
+				$("#likespan"+eyooId).attr("class","glyphicon glyphicon-heart");
 				likeCount++;
-				$("#likeCount" + weiboId).text(likeCount);
+				$("#likeCount" + eyooId).text(likeCount);
 			});
 		}
 		//已赞——>取消赞
 		else {
-			$.get("${pageContext.request.contextPath }/unlike.action?weiboId=" + weiboId,null,function(data){
-				$("#likespan"+weiboId).attr("class","glyphicon glyphicon-heart-empty");
+			$.get("${pageContext.request.contextPath }/unlike.action?eyooId=" + eyooId,null,function(data){
+				$("#likespan"+eyooId).attr("class","glyphicon glyphicon-heart-empty");
 				likeCount--;
-				$("#likeCount" + weiboId).text(likeCount);
+				$("#likeCount" + eyooId).text(likeCount);
 			});
 		}
 	}
 
-	function collect(weiboId) {
-		var text = $("#collect" + weiboId).text();
+	function collect(eyooId) {
+		var text = $("#collect" + eyooId).text();
 		if(text == "收藏") {
-			$.get("${pageContext.request.contextPath }/collect.action?weiboId=" + weiboId,null,function(data){
-				$("#collect" + weiboId).text("已收藏");
+			$.get("${pageContext.request.contextPath }/collect.action?eyooId=" + eyooId,null,function(data){
+				$("#collect" + eyooId).text("已收藏");
 			});
 		} 
 		if(text == "已收藏"){
-			$.get("${pageContext.request.contextPath }/uncollect.action?weiboId=" + weiboId,null,function(data){
-				$("#collect" + weiboId).text("收藏");
+			$.get("${pageContext.request.contextPath }/uncollect.action?eyooId=" + eyooId,null,function(data){
+				$("#collect" + eyooId).text("收藏");
 			});
 		}
 		

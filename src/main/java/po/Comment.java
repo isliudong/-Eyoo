@@ -12,7 +12,7 @@ public class Comment {
 
     private Integer userId;
 
-    private Integer weiboId;
+    private Integer eyooId;
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     private Date commentTime;
@@ -35,12 +35,12 @@ public class Comment {
         this.userId = userId;
     }
 
-    public Integer getWeiboId() {
-        return weiboId;
+    public Integer geteyooId() {
+        return eyooId;
     }
 
-    public void setWeiboId(Integer weiboId) {
-        this.weiboId = weiboId;
+    public void seteyooId(Integer eyooId) {
+        this.eyooId = eyooId;
     }
 
     public Date getCommentTime() {

@@ -4,10 +4,10 @@
 	<resultMap id="LikesResultMap" type="po.LikesCustom">
 		<id column="likes_id" property="likesId" jdbcType="INTEGER" />
 		<result column="user_id" property="userId" jdbcType="INTEGER" />
-		<result column="weibo_id" property="weiboId" jdbcType="INTEGER" />
+		<result column="eyoo_id" property="eyooId" jdbcType="INTEGER" />
 		<result column="like_time" property="likeTime" jdbcType="TIMESTAMP" />
-		<result column="weibo_nickname" property="weibo_nickname" jdbcType="VARCHAR"/>
-		<result column="weibo_face" property="weibo_face" jdbcType="VARCHAR"/>
+		<result column="eyoo_nickname" property="eyoo_nickname" jdbcType="VARCHAR"/>
+		<result column="eyoo_face" property="eyoo_face" jdbcType="VARCHAR"/>
 
 		<association property="user" javaType="po.UserCustom">
 			<id column="user_id" property="userId" jdbcType="INTEGER" />
@@ -20,8 +20,8 @@
 			<result column="province" property="province" jdbcType="VARCHAR" />
 			<result column="city" property="city" jdbcType="VARCHAR" />
 		</association>
-		<association property="weibo" javaType="po.WeiboCustom">
-			<id column="weibo_id" property="weiboId" jdbcType="INTEGER" />
+		<association property="eyoo" javaType="po.eyooCustom">
+			<id column="eyoo_id" property="eyooId" jdbcType="INTEGER" />
 			<result column="user_id" property="userId" jdbcType="INTEGER" />
 			<result column="post_time" property="postTime" jdbcType="TIMESTAMP" />
 			<result column="content" property="content" jdbcType="VARCHAR" />
@@ -42,44 +42,44 @@
 	<!-- 点赞 -->
 	<insert id="like" parameterType="po.LikesCustom">
 		INSERT INTO likes
-		(user_id,weibo_id,like_time) VALUE(#{userId},#{weiboId},#{likeTime})
+		(user_id,eyoo_id,like_time) VALUE(#{userId},#{eyooId},#{likeTime})
 	</insert>
 
 	<!-- 取消赞 -->
 	<delete id="unlike" parameterType="po.LikesCustom">
 		DELETE FROM likes WHERE
-		likes.user_id=#{userId} AND likes.weibo_id=#{weiboId}
+		likes.user_id=#{userId} AND likes.eyoo_id=#{eyooId}
 	</delete>
 
 	<!-- 是否赞 -->
 	<select id="queryIsLike" parameterType="po.LikesCustom"
 		resultType="po.LikesCustom">
 		SELECT * FROM likes WHERE likes.user_id=#{userId} AND
-		likes.weibo_id=#{weiboId}
+		likes.eyoo_id=#{eyooId}
 	</select>
 
 	<!-- 查询userId的被赞记录 -->
 	<select id="queryLikesByUserId" parameterType="int" resultMap="LikesResultMap">
-		SELECT l.like_time,u.face,u.nickname,w.content,w.weibo_id,wu.nickname AS weibo_nickname
+		SELECT l.like_time,u.face,u.nickname,w.content,w.eyoo_id,wu.nickname AS eyoo_nickname
 		FROM likes AS l LEFT
-		JOIN weibo AS w ON(l.weibo_id=w.weibo_id), USER AS u, USER AS wu
+		JOIN eyoo AS w ON(l.eyoo_id=w.eyoo_id), USER AS u, USER AS wu
 		WHERE
-		l.user_id=u.user_id AND l.weibo_id IN(
-		SELECT w.weibo_id
-		FROM weibo AS w
+		l.user_id=u.user_id AND l.eyoo_id IN(
+		SELECT w.eyoo_id
+		FROM eyoo AS w
 		WHERE w.user_id=#{params.userId}
 		) AND wu.user_id=w.user_id ORDER BY l.like_time DESC
 	</select>
 	
 	<!-- 查询 我的赞 -->
-	<select id="queryLikedWeiboSelf" parameterType="int" resultMap="LikesResultMap">
-		SELECT l.like_time,u.face,wu.face AS weibo_face,wu.nickname AS weibo_nickname,w.*
+	<select id="queryLikedeyooSelf" parameterType="int" resultMap="LikesResultMap">
+		SELECT l.like_time,u.face,wu.face AS eyoo_face,wu.nickname AS eyoo_nickname,w.*
 		FROM likes AS l LEFT
-		JOIN weibo AS w ON(l.weibo_id=w.weibo_id), USER AS u, USER AS wu
+		JOIN eyoo AS w ON(l.eyoo_id=w.eyoo_id), USER AS u, USER AS wu
 		WHERE
-		l.user_id=u.user_id AND l.weibo_id IN(
-		SELECT w.weibo_id
-		FROM weibo AS w
+		l.user_id=u.user_id AND l.eyoo_id IN(
+		SELECT w.eyoo_id
+		FROM eyoo AS w
 		WHERE l.user_id=#{params.userId}
 		) AND wu.user_id=w.user_id ORDER BY l.like_time DESC
 	</select>

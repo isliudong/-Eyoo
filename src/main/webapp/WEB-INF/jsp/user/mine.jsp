@@ -74,7 +74,7 @@
 			<br>
 			<table width="100%" style="table-layout: fixed; font-size: 20px">
 				<tr>
-					<td><a href="queryUserPage.action?pageNo=1&userId=${user.userId}">${user.weiboCount }微博</a></td>
+					<td><a href="queryUserPage.action?pageNo=1&userId=${user.userId}">${user.eyooCount }微博</a></td>
 					<td><a href="listFollow.action?userId=${user.userId}">${user.followCount }关注</a></td>
 					<td><a href="listFans.action?userId=${user.userId}">${user.fansCount }粉丝</a></td>
 				</tr>
@@ -95,21 +95,21 @@
 			</table>
 		</div>
 	</div>
-	<c:forEach items="${weiboList }" var="weibo" varStatus="status">
-	<div id="weibo${weibo.weiboId }">
+	<c:forEach items="${eyooList }" var="eyoo" varStatus="status">
+	<div id="eyoo${eyoo.eyooId }">
 		<!-- 头部 -->
-		<div id="weiboItem">
+		<div id="eyooItem">
 			<div class="container" style="width: 850px; background-color: white;">
 				<!-- 头像 -->
 				<div style="height: 50px; width: 50px; margin: 10px; float: left;">
-					<img src="/imgUpload/${weibo.user.face}" width="50px" height="50px"
+					<img src="/imgUpload/${eyoo.user.face}" width="50px" height="50px"
 						class="img-circle">
 				</div>
 				<!-- 昵称+日期 -->
 				<div
 					style="text-align: left; margin: 10px; margin-left: 20px; float: left;">
-					<a style="color: #333; font-size: 20px" href="#">${weibo.user.nickname }</a>
-					<br> <a style="color: #333" href="#">${weibo.date }</a>
+					<a style="color: #333; font-size: 20px" href="#">${eyoo.user.nickname }</a>
+					<br> <a style="color: #333" href="#">${eyoo.date }</a>
 				</div>
 				<!-- 删除操作按钮 -->
 				<div class="btn-group" style="float: right; margin: 10px">
@@ -118,9 +118,9 @@
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
-						<!-- ${pageContext.request.contextPath }/deleteWeibo.action?weiboId=${weibo.weiboId} -->
+						<!-- ${pageContext.request.contextPath }/deleteeyoo.action?eyooId=${eyoo.eyooId} -->
 						<li><a style="font-size: 10px"
-							href="javascript:delWeibo(${weibo.weiboId })">删除</a></li>
+							href="javascript:deleyoo(${eyoo.eyooId })">删除</a></li>
 					</ul>
 				</div>
 			</div>
@@ -128,52 +128,52 @@
 			<div class="container" style="width: 850px; background-color: #fff;">
 				<!-- 文字 -->
 				<div style="text-align: left; margin-left: 85px">
-					<p style="color: #333; font-size: 17px">${weibo.content }</p>
+					<p style="color: #333; font-size: 17px">${eyoo.content }</p>
 				</div>
 				<!-- 原创微博 -->
-				<c:if test="${weibo.original == 1 }">
+				<c:if test="${eyoo.original == 1 }">
 					<!-- 图片 -->
 					<div class="example" style="margin-left: 85px; margin-bottom: 20px;">
 						<table>
 							<tr>
-								<c:if test="${weibo.pic1!=null }">
-									<td><img src="/imgUpload/${weibo.pic1 }"
+								<c:if test="${eyoo.pic1!=null }">
+									<td><img src="/imgUpload/${eyoo.pic1 }"
 										style="width: 130px; height: 130px"></td>
 								</c:if>
-								<c:if test="${weibo.pic2!=null }">
-									<td><img src="/imgUpload/${weibo.pic2 }"
+								<c:if test="${eyoo.pic2!=null }">
+									<td><img src="/imgUpload/${eyoo.pic2 }"
 										style="width: 130px; height: 130px"></td>
 								</c:if>
-								<c:if test="${weibo.pic3!=null }">
-									<td><img src="/imgUpload/${weibo.pic3 }"
-										style="width: 130px; height: 130px"></td>
-								</c:if>
-							</tr>
-							<tr>
-								<c:if test="${weibo.pic4!=null }">
-									<td><img src="/imgUpload/${weibo.pic4 }"
-										style="width: 130px; height: 130px"></td>
-								</c:if>
-								<c:if test="${weibo.pic5!=null }">
-									<td><img src="/imgUpload/${weibo.pic5 }"
-										style="width: 130px; height: 130px"></td>
-								</c:if>
-								<c:if test="${weibo.pic6!=null }">
-									<td><img src="/imgUpload/${weibo.pic6 }"
+								<c:if test="${eyoo.pic3!=null }">
+									<td><img src="/imgUpload/${eyoo.pic3 }"
 										style="width: 130px; height: 130px"></td>
 								</c:if>
 							</tr>
 							<tr>
-								<c:if test="${weibo.pic7!=null }">
-									<td><img src="/imgUpload/${weibo.pic7 }"
+								<c:if test="${eyoo.pic4!=null }">
+									<td><img src="/imgUpload/${eyoo.pic4 }"
 										style="width: 130px; height: 130px"></td>
 								</c:if>
-								<c:if test="${weibo.pic8!=null }">
-									<td><img src="/imgUpload/${weibo.pic8 }"
+								<c:if test="${eyoo.pic5!=null }">
+									<td><img src="/imgUpload/${eyoo.pic5 }"
 										style="width: 130px; height: 130px"></td>
 								</c:if>
-								<c:if test="${weibo.pic9!=null }">
-									<td><img src="/imgUpload/${weibo.pic9 }"
+								<c:if test="${eyoo.pic6!=null }">
+									<td><img src="/imgUpload/${eyoo.pic6 }"
+										style="width: 130px; height: 130px"></td>
+								</c:if>
+							</tr>
+							<tr>
+								<c:if test="${eyoo.pic7!=null }">
+									<td><img src="/imgUpload/${eyoo.pic7 }"
+										style="width: 130px; height: 130px"></td>
+								</c:if>
+								<c:if test="${eyoo.pic8!=null }">
+									<td><img src="/imgUpload/${eyoo.pic8 }"
+										style="width: 130px; height: 130px"></td>
+								</c:if>
+								<c:if test="${eyoo.pic9!=null }">
+									<td><img src="/imgUpload/${eyoo.pic9 }"
 										style="width: 130px; height: 130px"></td>
 								</c:if>
 							</tr>
@@ -183,7 +183,7 @@
 			</div>
 
 			<!-- 非原创 转发微博 -->
-			<c:if test="${weibo.original == 0 }">
+			<c:if test="${eyoo.original == 0 }">
 				<!-- 头部 -->
 				<div class="container"
 					style="width: 850px; background-color: #eaeaec;">
@@ -192,67 +192,67 @@
 						style="cursor: pointer; height: 30px; width: 30px; margin: 10px; float: left; margin-left: 100px;">
 						<img
 							onclick="
-		<c:if test="${weibo.repost.user.userId==user.userId }">javascript:clickme();</c:if>
-		<c:if test="${weibo.repost.user.userId!=user.userId }">javascript:clickother(${weibo.repost.user.userId});</c:if>"
-							src="/imgUpload/${weibo.repost.user.face}" width="40px"
+		<c:if test="${eyoo.repost.user.userId==user.userId }">javascript:clickme();</c:if>
+		<c:if test="${eyoo.repost.user.userId!=user.userId }">javascript:clickother(${eyoo.repost.user.userId});</c:if>"
+							src="/imgUpload/${eyoo.repost.user.face}" width="40px"
 							height="40px" class="img-circle">
 					</div>
 					<!-- 昵称+日期 -->
 					<div
 						style="text-align: left; margin: 10px; margin-left: 20px; float: left;">
-						<a style="color: #333; font-size: 14px" href="javascrip:;">${weibo.repost.user.nickname }</a><br>
-						<span style="color: #333; font-size: 10px">${weibo.repost.date }</span>
+						<a style="color: #333; font-size: 14px" href="javascrip:;">${eyoo.repost.user.nickname }</a><br>
+						<span style="color: #333; font-size: 10px">${eyoo.repost.date }</span>
 					</div>
 				</div>
 				<div class="container"
 					style="width: 850px; background-color: #eaeaec;">
 					<!-- 文字 -->
-					<!-- onclick="javascript:clickWeibo(${weibo.weiboId});" -->
+					<!-- onclick="javascript:clickeyoo(${eyoo.eyooId});" -->
 					<div style="text-align: left; margin-left: 160px">
-						<p style="color: #333; font-size: 17px">${weibo.repost.content }</p>
+						<p style="color: #333; font-size: 17px">${eyoo.repost.content }</p>
 					</div>
 					<!-- 图片 -->
 					<div class="example" style="margin-left: 160px;margin-bottom: 20px;">
 						<table>
 							<tr>
-								<c:if test="${weibo.repost.pic1!=null }">
-									<td><img src="/imgUpload/${weibo.repost.pic1 }"
+								<c:if test="${eyoo.repost.pic1!=null }">
+									<td><img src="/imgUpload/${eyoo.repost.pic1 }"
 										style="width: 90px; height: 90px"></td>
 								</c:if>
-								<c:if test="${weibo.repost.pic2!=null }">
-									<td><img src="/imgUpload/${weibo.repost.pic2 }"
+								<c:if test="${eyoo.repost.pic2!=null }">
+									<td><img src="/imgUpload/${eyoo.repost.pic2 }"
 										style="width: 90px; height: 90px"></td>
 								</c:if>
-								<c:if test="${weibo.repost.pic3!=null }">
-									<td><img src="/imgUpload/${weibo.repost.pic3 }"
-										style="width: 90px; height: 90px"></td>
-								</c:if>
-							</tr>
-							<tr>
-								<c:if test="${weibo.repost.pic4!=null }">
-									<td><img src="/imgUpload/${weibo.repost.pic4 }"
-										style="width: 90px; height: 90px"></td>
-								</c:if>
-								<c:if test="${weibo.repost.pic5!=null }">
-									<td><img src="/imgUpload/${weibo.repost.pic5 }"
-										style="width: 90px; height: 90px"></td>
-								</c:if>
-								<c:if test="${weibo.repost.pic6!=null }">
-									<td><img src="/imgUpload/${weibo.repost.pic6 }"
+								<c:if test="${eyoo.repost.pic3!=null }">
+									<td><img src="/imgUpload/${eyoo.repost.pic3 }"
 										style="width: 90px; height: 90px"></td>
 								</c:if>
 							</tr>
 							<tr>
-								<c:if test="${weibo.repost.pic7!=null }">
-									<td><img src="/imgUpload/${weibo.repost.pic7 }"
+								<c:if test="${eyoo.repost.pic4!=null }">
+									<td><img src="/imgUpload/${eyoo.repost.pic4 }"
 										style="width: 90px; height: 90px"></td>
 								</c:if>
-								<c:if test="${weibo.repost.pic8!=null }">
-									<td><img src="/imgUpload/${weibo.repost.pic8 }"
+								<c:if test="${eyoo.repost.pic5!=null }">
+									<td><img src="/imgUpload/${eyoo.repost.pic5 }"
 										style="width: 90px; height: 90px"></td>
 								</c:if>
-								<c:if test="${weibo.repost.pic9!=null }">
-									<td><img src="/imgUpload/${weibo.repost.pic9 }"
+								<c:if test="${eyoo.repost.pic6!=null }">
+									<td><img src="/imgUpload/${eyoo.repost.pic6 }"
+										style="width: 90px; height: 90px"></td>
+								</c:if>
+							</tr>
+							<tr>
+								<c:if test="${eyoo.repost.pic7!=null }">
+									<td><img src="/imgUpload/${eyoo.repost.pic7 }"
+										style="width: 90px; height: 90px"></td>
+								</c:if>
+								<c:if test="${eyoo.repost.pic8!=null }">
+									<td><img src="/imgUpload/${eyoo.repost.pic8 }"
+										style="width: 90px; height: 90px"></td>
+								</c:if>
+								<c:if test="${eyoo.repost.pic9!=null }">
+									<td><img src="/imgUpload/${eyoo.repost.pic9 }"
 										style="width: 90px; height: 90px"></td>
 								</c:if>
 							</tr>
@@ -267,7 +267,7 @@
 			<div class="btn-group" style="width: 100%">
 				<button type="button" style="width: 25%" class="btn btn-success">收藏</button>
 				<button type="button" style="width: 25%" class="btn btn-primary">转发</button>
-				<button onclick="loadComment(${weibo.weiboId})" style="width: 25%" 
+				<button onclick="loadComment(${eyoo.eyooId})" style="width: 25%"
 					class="btn btn-warning" id="bt${status.index }">评论</button>
 				<button type="button" style="width: 25%" class="btn btn-danger">点赞</button>
 			</div>
@@ -283,11 +283,11 @@
 						placeholder="等待输入......." onkeyup="keyUP(this) "></textarea>
 					<a href="javascript:; " class="plBtn " >评论</a>
 					<!-- 微博id -->
-					<input type="hidden" value="${weibo.weiboId}" class="weiboId">
+					<input type="hidden" value="${eyoo.eyooId}" class="eyooId">
 				</div>
 				<!--评论区域 end-->
 				<!--回复区域 begin-->
-				<div class="comment-show " id="${weibo.weiboId }"></div>
+				<div class="comment-show " id="${eyoo.eyooId }"></div>
 				<!--回复区域 end-->
 			</div>
 			<hr>
@@ -297,7 +297,7 @@
 				<!-- 分页 -->
 				<ul class="pagination pagination-lg">
 					<!-- 上一页 -->
-					<li><a href="queryAllWeiboFriends.action?pageNo=${page.pageNo-1 }">&laquo;</a></li>
+					<li><a href="queryAlleyooFriends.action?pageNo=${page.pageNo-1 }">&laquo;</a></li>
 					<c:choose>
 						<%-- 第一条：如果总页数<=5，那么页码列表为1 ~ tp --%>
 						<c:when test="${page.totalPage <= page.pageSize }">
@@ -327,19 +327,19 @@
 							<li class="active"><a href="#">${i}</a></li>
 						</c:if>
 						<c:if test="${i!=page.pageNo }">
-							<li><a href="queryAllWeiboFriends.action?pageNo=${i }">${i}</a></li>
+							<li><a href="queryAlleyooFriends.action?pageNo=${i }">${i}</a></li>
 						</c:if>
 					</c:forEach>
 					<!-- 下一页 -->
-					<li><a href="queryAllWeiboFriends.action?pageNo=${page.pageNo+1 }">&raquo;</a></li>
+					<li><a href="queryAlleyooFriends.action?pageNo=${page.pageNo+1 }">&raquo;</a></li>
 				</ul>
 	<script type="text/javascript">
 	
 	//删除微博
-	function delWeibo(weiboId) {
+	function deleyoo(eyooId) {
 		if(confirm("您确定要删除这条微博吗？")){
-			$.get("${pageContext.request.contextPath }/deleteWeibo.action?weiboId=" + weiboId,null,function(data){
-				$("#weibo" + weiboId).remove();
+			$.get("${pageContext.request.contextPath }/deleteeyoo.action?eyooId=" + eyooId,null,function(data){
+				$("#eyoo" + eyooId).remove();
 			});
 		}
 	}
@@ -402,8 +402,8 @@
 		
 		// 长轮询
 		$.ajax(getNotice);
-		function hi(weiboId){
-			var id = weiboId;
+		function hi(eyooId){
+			var id = eyooId;
 			alert(id);
 		}
 	</script>

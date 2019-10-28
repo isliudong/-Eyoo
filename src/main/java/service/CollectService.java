@@ -14,7 +14,7 @@ public interface CollectService {
 	void uncollect(CollectCustom collection);
 
 	// 该用户是否收藏 0——否 1——是
-	int isCollect(Integer userId, Integer weiboId);
+	int isCollect(Integer userId, Integer eyooId);
 
 	// 查询我的收藏列表
 	Page<CollectCustom> queryMyCollection(Integer userId, int pageNo);

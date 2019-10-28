@@ -1,7 +1,7 @@
 //加载评论
-function loadComment(weiboId){
-    if($('#'+weiboId).children().length<=0){
-    var commentAction = "queryComment.action?weiboId=" + weiboId;
+function loadComment(eyooId){
+    if($('#'+eyooId).children().length<=0){
+    var commentAction = "queryComment.action?eyooId=" + eyooId;
     $.ajax({
         type: 'GET',
         url: commentAction,
@@ -36,10 +36,10 @@ function loadComment(weiboId){
                 if(data[i].countReply == 0) {
                 	com = com + '</div></div></div>';
                 } else {
-                	com = com + '<a href="singleWeibo.action?weiboId='+ weiboId +'" style="color: #987">共'+ data[i].countReply +'条回复</a>'+
+                	com = com + '<a href="singleeyoo.action?eyooId='+ eyooId +'" style="color: #987">共'+ data[i].countReply +'条回复</a>'+
                     			'</div></div></div>';
                 }
-            $('#'+weiboId).prepend(com);
+            $('#'+eyooId).prepend(com);
                 }
             }
         });
@@ -67,8 +67,8 @@ $('.commentAll').on('click', '.plBtn', function() {
 	var face = $("#face").val();
 	var nickname = $("#nickname").val();
 	var userId = $("#userId").val();
-	var weiboId = $(this).parents('.reviewArea ').find('.weiboId').val();
-    console.log(weiboId);
+	var eyooId = $(this).parents('.reviewArea ').find('.eyooId').val();
+    console.log(eyooId);
     var myDate = new Date();
     //获取当前年
     var year = myDate.getFullYear();
@@ -108,7 +108,7 @@ $('.commentAll').on('click', '.plBtn', function() {
         $(this).siblings('.flex-text-wrap').find('.comment-input').prop('value', '').siblings('pre').find('span').text('');
         var json = {
         	"userId":userId,
-        	"weiboId":weiboId,
+        	"eyooId":eyooId,
         	"commentTime":now,
         	"commentContent":oSize
         };
@@ -169,7 +169,7 @@ $('.comment-show').on('click', '.hf-pl', function() {
 
     } else {
         var content;
-        $.getJSON("/weibo/json/pl.json", function(data) {
+        $.getJSON("/eyoo/json/pl.json", function(data) {
             var oAt = '';
             var oHf = '';
             $.each(data, function(n, v) {
@@ -294,7 +294,7 @@ $('.comment-show').on('click', '.date-dz-z', function() {
 //                 '<span class="pull-left date-dz-line">|</span>'+
 //                 '<a href="javascript:;" class="date-dz-z pull-left">'+
 //                 '<i class="date-dz-z-click-red"></i>赞 (<i class="z-num">666</i>)</a></div> </div></div>';
-//                 $('#'+weiboId).find('#'+data[i].commentId).prepend(Reply);
+//                 $('#'+eyooId).find('#'+data[i].commentId).prepend(Reply);
 //                 }
 //             }
 //         });

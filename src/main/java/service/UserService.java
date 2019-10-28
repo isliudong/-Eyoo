@@ -22,7 +22,7 @@ public interface UserService {
 	public void updateUserInfo(UserVo userVo) throws Exception;
 
 	// 根据用户id查询用户的微博数
-	public int queryWeiboCount(Integer userId) throws Exception;
+	public int queryeyooCount(Integer userId) throws Exception;
 
 	// 根据用户id查询用户的关注数
 	public int queryFollowCount(Integer userId) throws Exception;

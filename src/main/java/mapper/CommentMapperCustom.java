@@ -11,8 +11,8 @@ public interface CommentMapperCustom {
 	// 评论
 	void addComment(CommentCustom commentCustom);
 
-	// 查询weiboId的评论
-	List<CommentCustom> queryComment(int weiboId);
+	// 查询eyooId的评论
+	List<CommentCustom> queryComment(int eyooId);
 
 	// 查询评论下回复数量
 	int qeuryCountReply(Integer commentId);

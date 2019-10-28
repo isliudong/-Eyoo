@@ -20,13 +20,13 @@ import po.MentionCustom;
 import po.Page;
 import po.ReplyCustom;
 import po.UserCustom;
-import po.WeiboCustom;
+import po.eyooCustom;
 import service.CollectService;
 import service.CommentService;
 import service.LikesService;
 import service.MentionService;
 import service.ReplyService;
-import service.WeiboService;
+import service.eyooService;
 import utils.DateConvert;
 
 
@@ -37,7 +37,7 @@ public class MentionController {
 	private MentionService mentionService;
 
 	@Autowired
-	private WeiboService weiboService;
+	private eyooService eyooService;
 
 	@Autowired
 	private LikesService likesService;
@@ -137,22 +137,22 @@ public class MentionController {
 		session.setAttribute("user", user);
 
 		// 用户被转发的微博列表
-		Page<WeiboCustom> page = new Page<WeiboCustom>();
+		Page<eyooCustom> page = new Page<eyooCustom>();
 		page.setPageNo(pageNo);
 		page.getParams().put("userId", user.getUserId());
 		// 转发微博外部
-		Page<WeiboCustom> pageList = weiboService.queryRepostByUserId(page);
+		Page<eyooCustom> pageList = eyooService.queryRepostByUserId(page);
 		// 源微博
-		List<WeiboCustom> weiboList = pageList.getResults();
-		for (WeiboCustom weibo : weiboList) {
+		List<eyooCustom> eyooList = pageList.getResults();
+		for (eyooCustom eyoo : eyooList) {
 			// 查询微博转发 评论 点赞次数
-			weibo.setRepostCount(weiboService.queryRepostCount(weibo.getWeiboId()));
-			// weiboCustom.setCommentCount(weiboService.queryCommentCount(weiboCustom.getWeiboId()));
-			weibo.setLikeCount(weiboService.queryLikeCount(weibo.getWeiboId()));
-			weibo.setDate(dateConvert.convert2s(weibo.getPostTime()));
-			WeiboCustom repost = weiboService.queryWeiboByWeiboId(weibo.getRepostId()).get(0);
+			eyoo.setRepostCount(eyooService.queryRepostCount(eyoo.geteyooId()));
+			// eyooCustom.setCommentCount(eyooService.queryCommentCount(eyooCustom.geteyooId()));
+			eyoo.setLikeCount(eyooService.queryLikeCount(eyoo.geteyooId()));
+			eyoo.setDate(dateConvert.convert2s(eyoo.getPostTime()));
+			eyooCustom repost = eyooService.queryeyooByeyooId(eyoo.getRepostId()).get(0);
 			repost.setDate(dateConvert.convert2s(repost.getPostTime()));
-			weibo.setRepost(repost);
+			eyoo.setRepost(repost);
 		}
 
 		model.addAttribute("RepostList", pageList.getResults());
@@ -161,7 +161,7 @@ public class MentionController {
 		model.addAttribute("page", pageList);
 
 		model.addAttribute("user", user);
-		return "/weibo/RepostPage";
+		return "/eyoo/RepostPage";
 	}
 
 	/**
@@ -192,7 +192,7 @@ public class MentionController {
 		model.addAttribute("commentList", commentList);
 		page.setResults(null);
 		model.addAttribute("page", page);
-		return "/weibo/CommentPage";
+		return "/eyoo/CommentPage";
 	}
 
 	/**
@@ -222,7 +222,7 @@ public class MentionController {
 		model.addAttribute("replyList", page.getResults());
 		page.setResults(null);
 		model.addAttribute("page", page);
-		return "/weibo/ReplyPage";
+		return "/eyoo/ReplyPage";
 	}
 
 	/**
@@ -259,7 +259,7 @@ public class MentionController {
 
 		page.setResults(null);
 		model.addAttribute("page", page);
-		return "/weibo/LikePage";
+		return "/eyoo/LikePage";
 	}
 
 	/**
@@ -276,32 +276,32 @@ public class MentionController {
 	public String toMyLikes(HttpSession session, Model model, @RequestParam("pageNo") int pageNo) throws Exception {
 
 		UserCustom user = (UserCustom) session.getAttribute("user");
-		Page<LikesCustom> page = likesService.queryLikedWeiboSelf(user.getUserId(), pageNo);
+		Page<LikesCustom> page = likesService.queryLikedeyooSelf(user.getUserId(), pageNo);
 		List<LikesCustom> likesList = page.getResults();
 		for (LikesCustom like : likesList) {
-			WeiboCustom weibo = like.getWeibo();
+			eyooCustom eyoo = like.geteyoo();
 			// 微博发送时间
-			weibo.setDate(dateConvert.convert2s(weibo.getPostTime()));
+			eyoo.setDate(dateConvert.convert2s(eyoo.getPostTime()));
 			// 用户是否赞过
-			weibo.setLikes(likesService.isLike(user.getUserId(), weibo.getWeiboId()));
+			eyoo.setLikes(likesService.isLike(user.getUserId(), eyoo.geteyooId()));
 
 			// 用户是否收藏
-			weibo.setCollect(collectService.isCollect(user.getUserId(), weibo.getWeiboId()));
+			eyoo.setCollect(collectService.isCollect(user.getUserId(), eyoo.geteyooId()));
 
 			// 查询微博 评论 点赞次数
-			// weiboCustom.setCommentCount(weiboService.queryCommentCount(weiboCustom.getWeiboId()));
-			weibo.setLikeCount(weiboService.queryLikeCount(weibo.getWeiboId()));
+			// eyooCustom.setCommentCount(eyooService.queryCommentCount(eyooCustom.geteyooId()));
+			eyoo.setLikeCount(eyooService.queryLikeCount(eyoo.geteyooId()));
 			// 非原创 即属于转发微博
-			if (weibo.getOriginal() == 0) {
-				WeiboCustom repostWeibo = weiboService.queryWeiboByWeiboId(weibo.getRepostId()).get(0);
-				repostWeibo.setDate(dateConvert.convert2s(repostWeibo.getPostTime()));
-				weibo.setRepost(repostWeibo);
+			if (eyoo.getOriginal() == 0) {
+				eyooCustom reposteyoo = eyooService.queryeyooByeyooId(eyoo.getRepostId()).get(0);
+				reposteyoo.setDate(dateConvert.convert2s(reposteyoo.getPostTime()));
+				eyoo.setRepost(reposteyoo);
 			}
 		}
 		model.addAttribute("likesList", page.getResults());
 		page.setResults(null);
 		model.addAttribute("page", page);
-		return "/weibo/myLikes";
+		return "/eyoo/myLikes";
 	}
 
 	/**
@@ -321,28 +321,28 @@ public class MentionController {
 		Page<CollectCustom> page = collectService.queryMyCollection(user.getUserId(), pageNo);
 		List<CollectCustom> collectionList = page.getResults();
 		for (CollectCustom collection : collectionList) {
-			WeiboCustom weibo = collection.getWeibo();
+			eyooCustom eyoo = collection.geteyoo();
 			// 微博发送时间
-			weibo.setDate(dateConvert.convert2s(weibo.getPostTime()));
+			eyoo.setDate(dateConvert.convert2s(eyoo.getPostTime()));
 			// 用户是否赞过
-			weibo.setLikes(likesService.isLike(user.getUserId(), weibo.getWeiboId()));
+			eyoo.setLikes(likesService.isLike(user.getUserId(), eyoo.geteyooId()));
 
 			// 用户是否收藏
-			weibo.setCollect(collectService.isCollect(user.getUserId(), weibo.getWeiboId()));
+			eyoo.setCollect(collectService.isCollect(user.getUserId(), eyoo.geteyooId()));
 
 			// 查询微博 评论 点赞次数
-			// weiboCustom.setCommentCount(weiboService.queryCommentCount(weiboCustom.getWeiboId()));
-			weibo.setLikeCount(weiboService.queryLikeCount(weibo.getWeiboId()));
+			// eyooCustom.setCommentCount(eyooService.queryCommentCount(eyooCustom.geteyooId()));
+			eyoo.setLikeCount(eyooService.queryLikeCount(eyoo.geteyooId()));
 			// 非原创 即属于转发微博
-			if (weibo.getOriginal() == 0) {
-				WeiboCustom repostWeibo = weiboService.queryWeiboByWeiboId(weibo.getRepostId()).get(0);
-				repostWeibo.setDate(dateConvert.convert2s(repostWeibo.getPostTime()));
-				weibo.setRepost(repostWeibo);
+			if (eyoo.getOriginal() == 0) {
+				eyooCustom reposteyoo = eyooService.queryeyooByeyooId(eyoo.getRepostId()).get(0);
+				reposteyoo.setDate(dateConvert.convert2s(reposteyoo.getPostTime()));
+				eyoo.setRepost(reposteyoo);
 			}
 		}
 		model.addAttribute("collectionList", page.getResults());
 		page.setResults(null);
 		model.addAttribute("page", page);
-		return "/weibo/myCollection";
+		return "/eyoo/myCollection";
 	}
 }

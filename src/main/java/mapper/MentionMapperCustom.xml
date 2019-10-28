@@ -19,9 +19,9 @@
 	<!-- 根据用户id查询所发微博的转发量 -->
 	<select id="queryRepostCount" parameterType="int" resultType="int">
 		SELECT COUNT(*) 
-		FROM weibo
+		FROM eyoo
 		WHERE repost_id IN (
-			SELECT weibo_id FROM weibo WHERE user_id = #{userId}
+			SELECT eyoo_id FROM eyoo WHERE user_id = #{userId}
 		)
 	</select>
 
@@ -29,8 +29,8 @@
 	<select id="queryCommentCount" parameterType="int" resultType="int">
 		SELECT COUNT(*) 
 		FROM COMMENT 
-		WHERE weibo_id IN (
-			SELECT weibo_id FROM weibo WHERE user_id = #{userId}
+		WHERE eyoo_id IN (
+			SELECT eyoo_id FROM eyoo WHERE user_id = #{userId}
 		)
 	</select>
 	
@@ -43,9 +43,9 @@
 	<select id="queryLikeCount" parameterType="int" resultType="int">
 		SELECT	COUNT(*)
 		FROM likes
-		WHERE weibo_id IN (
-			SELECT weibo_id
-			FROM weibo
+		WHERE eyoo_id IN (
+			SELECT eyoo_id
+			FROM eyoo
 			WHERE user_id = #{userId}
 		)
 	</select>

@@ -33,10 +33,10 @@ public class CollectServiceImpl implements CollectService {
 
 	// 是否收藏 1——是 0——否
 	@Override
-	public int isCollect(Integer userId, Integer weiboId) {
+	public int isCollect(Integer userId, Integer eyooId) {
 		CollectCustom collect = new CollectCustom();
 		collect.setUserId(userId);
-		collect.setWeiboId(weiboId);
+		collect.seteyooId(eyooId);
 		List<CollectCustom> collectList = collectMapperCustom.isCollect(collect);
 		if(collectList.size() != 0) {
 			return 1;

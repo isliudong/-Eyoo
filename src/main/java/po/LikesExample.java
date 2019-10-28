@@ -224,63 +224,63 @@ public class LikesExample {
             return (Criteria) this;
         }
 
-        public Criteria andWeiboIdIsNull() {
-            addCriterion("weibo_id is null");
+        public Criteria andeyooIdIsNull() {
+            addCriterion("eyoo_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andWeiboIdIsNotNull() {
-            addCriterion("weibo_id is not null");
+        public Criteria andeyooIdIsNotNull() {
+            addCriterion("eyoo_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andWeiboIdEqualTo(Integer value) {
-            addCriterion("weibo_id =", value, "weiboId");
+        public Criteria andeyooIdEqualTo(Integer value) {
+            addCriterion("eyoo_id =", value, "eyooId");
             return (Criteria) this;
         }
 
-        public Criteria andWeiboIdNotEqualTo(Integer value) {
-            addCriterion("weibo_id <>", value, "weiboId");
+        public Criteria andeyooIdNotEqualTo(Integer value) {
+            addCriterion("eyoo_id <>", value, "eyooId");
             return (Criteria) this;
         }
 
-        public Criteria andWeiboIdGreaterThan(Integer value) {
-            addCriterion("weibo_id >", value, "weiboId");
+        public Criteria andeyooIdGreaterThan(Integer value) {
+            addCriterion("eyoo_id >", value, "eyooId");
             return (Criteria) this;
         }
 
-        public Criteria andWeiboIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("weibo_id >=", value, "weiboId");
+        public Criteria andeyooIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("eyoo_id >=", value, "eyooId");
             return (Criteria) this;
         }
 
-        public Criteria andWeiboIdLessThan(Integer value) {
-            addCriterion("weibo_id <", value, "weiboId");
+        public Criteria andeyooIdLessThan(Integer value) {
+            addCriterion("eyoo_id <", value, "eyooId");
             return (Criteria) this;
         }
 
-        public Criteria andWeiboIdLessThanOrEqualTo(Integer value) {
-            addCriterion("weibo_id <=", value, "weiboId");
+        public Criteria andeyooIdLessThanOrEqualTo(Integer value) {
+            addCriterion("eyoo_id <=", value, "eyooId");
             return (Criteria) this;
         }
 
-        public Criteria andWeiboIdIn(List<Integer> values) {
-            addCriterion("weibo_id in", values, "weiboId");
+        public Criteria andeyooIdIn(List<Integer> values) {
+            addCriterion("eyoo_id in", values, "eyooId");
             return (Criteria) this;
         }
 
-        public Criteria andWeiboIdNotIn(List<Integer> values) {
-            addCriterion("weibo_id not in", values, "weiboId");
+        public Criteria andeyooIdNotIn(List<Integer> values) {
+            addCriterion("eyoo_id not in", values, "eyooId");
             return (Criteria) this;
         }
 
-        public Criteria andWeiboIdBetween(Integer value1, Integer value2) {
-            addCriterion("weibo_id between", value1, value2, "weiboId");
+        public Criteria andeyooIdBetween(Integer value1, Integer value2) {
+            addCriterion("eyoo_id between", value1, value2, "eyooId");
             return (Criteria) this;
         }
 
-        public Criteria andWeiboIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("weibo_id not between", value1, value2, "weiboId");
+        public Criteria andeyooIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("eyoo_id not between", value1, value2, "eyooId");
             return (Criteria) this;
         }
     }

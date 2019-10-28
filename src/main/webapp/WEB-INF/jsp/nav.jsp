@@ -6,9 +6,9 @@
 
 <script type="text/javascript">
 	// 查找微博
-	function search_weibo() {
+	function search_eyoo() {
 		var keyWord = $("#searchText").val();
-		var url = "${pageContext.request.contextPath }/queryWeiboByWord.action?pageNo=1&keyWord="
+		var url = "${pageContext.request.contextPath }/queryeyooByWord.action?pageNo=1&keyWord="
 				+ keyWord;
 		if (keyWord == "") {
 			alert("什么都没有 想要找什么呢？！");
@@ -32,7 +32,7 @@
 	var websocket = null;
 	//判断当前浏览器是否支持WebSocket
 	if ('WebSocket' in window) {
-		websocket = new WebSocket("ws://localhost:8080/weibo/hello");
+		websocket = new WebSocket("ws://localhost:8080/eyoo/hello");
 	} else {
 		alert('当前浏览器 Not support websocket')
 	}
@@ -91,15 +91,15 @@
 	<div class="container-fluid">
 		<div>
 			<ul class="nav navbar-nav navbar-left">
-				<li><a href="queryAllWeiboNow.action?pageNo=1">实时</a></li>
-				<li><a href="queryAllWeiboFollow.action?pageNo=1">首页</a></li>
-				<li><a href="queryAllWeiboFriends.action?pageNo=1">好友圈</a></li>
+				<li><a href="queryAlleyooNow.action?pageNo=1">实时</a></li>
+				<li><a href="queryAlleyooFollow.action?pageNo=1">首页</a></li>
+				<li><a href="queryAlleyooFriends.action?pageNo=1">好友圈</a></li>
 				<li><input required="required" id="searchText" type="text"
 					style="margin-top: 8px;" class="form-control" placeholder="搜索"></li>
 				<li><button style="margin-top: 8px; margin-left: 5px;"
 						onclick="search_people();" class="form-control btn btn-info">找人</button></li>
 				<li><button style="margin-top: 8px; margin-left: 10px;"
-						onclick="search_weibo();" class="form-control btn btn-info">找微博</button></li>
+						onclick="search_eyoo();" class="form-control btn btn-info">找微博</button></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="notice" href="#"

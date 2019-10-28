@@ -13,17 +13,17 @@ public class ReplyCustom extends Reply {
 	private String to_face;
 
 	// 源微博
-	private Weibo weibo;
+	private eyoo eyoo;
 
 	// 回复时间 sql扩展
 		private String rtime;
 
-	public Weibo getWeibo() {
-		return weibo;
+	public eyoo geteyoo() {
+		return eyoo;
 	}
 
-	public void setWeibo(Weibo weibo) {
-		this.weibo = weibo;
+	public void seteyoo(eyoo eyoo) {
+		this.eyoo = eyoo;
 	}
 
 	public String getFrom_face() {

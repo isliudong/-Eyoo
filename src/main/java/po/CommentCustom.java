@@ -8,9 +8,9 @@ public class CommentCustom extends Comment {
 	private User user;
 
 	// 被评论微博用户昵称
-	private String weibo_nickname;
+	private String eyoo_nickname;
 
-	private Weibo weibo;
+	private eyoo eyoo;
 
 	// json评论时间
 	private String time;
@@ -21,20 +21,20 @@ public class CommentCustom extends Comment {
 	// 回复list
 	private List<ReplyCustom> replyList;
 
-	public String getWeibo_nickname() {
-		return weibo_nickname;
+	public String geteyoo_nickname() {
+		return eyoo_nickname;
 	}
 
-	public void setWeibo_nickname(String weibo_nickname) {
-		this.weibo_nickname = weibo_nickname;
+	public void seteyoo_nickname(String eyoo_nickname) {
+		this.eyoo_nickname = eyoo_nickname;
 	}
 
-	public Weibo getWeibo() {
-		return weibo;
+	public eyoo geteyoo() {
+		return eyoo;
 	}
 
-	public void setWeibo(Weibo weibo) {
-		this.weibo = weibo;
+	public void seteyoo(eyoo eyoo) {
+		this.eyoo = eyoo;
 	}
 
 	public List<ReplyCustom> getReplyList() {

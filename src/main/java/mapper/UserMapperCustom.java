@@ -19,7 +19,7 @@ public interface UserMapperCustom {
 	public void updateByUserId(UserVo userVo) throws Exception;
 
 	// 查询用户发博数
-	public int queryWeiboCount(int id) throws Exception;
+	public int queryeyooCount(int id) throws Exception;
 
 	// 查询用户关注数
 	public int queryFollowCount(Integer userId) throws Exception;

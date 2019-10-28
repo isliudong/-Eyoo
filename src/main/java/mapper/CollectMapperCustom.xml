@@ -3,11 +3,11 @@
 <mapper namespace="mapper.CollectMapperCustom">
 	<resultMap id="CollectResultMap" type="po.CollectCustom">
 		<id column="collect_id" property="collectId" jdbcType="INTEGER" />
-		<result column="weibo_id" property="weiboId" jdbcType="INTEGER" />
+		<result column="eyoo_id" property="eyooId" jdbcType="INTEGER" />
 		<result column="user_id" property="userId" jdbcType="INTEGER" />
 		<result column="collect_time" property="collectTime" jdbcType="TIMESTAMP" />
-		<result column="weibo_nickname" property="weibo_nickname" jdbcType="TIMESTAMP" />
-		<result column="weibo_face" property="weibo_face" jdbcType="TIMESTAMP" />
+		<result column="eyoo_nickname" property="eyoo_nickname" jdbcType="TIMESTAMP" />
+		<result column="eyoo_face" property="eyoo_face" jdbcType="TIMESTAMP" />
 		
 		<association property="user" javaType="po.UserCustom">
 			<id column="user_id" property="userId" jdbcType="INTEGER" />
@@ -20,8 +20,8 @@
 			<result column="province" property="province" jdbcType="VARCHAR" />
 			<result column="city" property="city" jdbcType="VARCHAR" />
 		</association>
-		<association property="weibo" javaType="po.WeiboCustom">
-			<id column="weibo_id" property="weiboId" jdbcType="INTEGER" />
+		<association property="eyoo" javaType="po.eyooCustom">
+			<id column="eyoo_id" property="eyooId" jdbcType="INTEGER" />
 			<result column="user_id" property="userId" jdbcType="INTEGER" />
 			<result column="post_time" property="postTime" jdbcType="TIMESTAMP" />
 			<result column="content" property="content" jdbcType="VARCHAR" />
@@ -42,26 +42,26 @@
 
 	<!-- 收藏 -->
 	<insert id="collect" parameterType="po.CollectCustom">
-		INSERT INTO collect (weibo_id,user_id,collect_time) VALUE(#{weiboId}, #{userId}, #{collectTime})
+		INSERT INTO collect (eyoo_id,user_id,collect_time) VALUE(#{eyooId}, #{userId}, #{collectTime})
 	</insert>
 	
 	<!-- 取消收藏 -->
 	<delete id="uncollect" parameterType="po.CollectCustom">
-		DELETE FROM collect WHERE weibo_id=#{weiboId} AND user_id=#{userId}
+		DELETE FROM collect WHERE eyoo_id=#{eyooId} AND user_id=#{userId}
 	</delete>
 	
 	<!-- 用户是否收藏微博 -->
 	<select id="isCollect" parameterType="po.CollectCustom" resultType="po.CollectCustom">
-		SELECT * FROM collect WHERE weibo_id=#{weiboId} AND user_id=#{userId}
+		SELECT * FROM collect WHERE eyoo_id=#{eyooId} AND user_id=#{userId}
 	</select>
 	
 	<!-- 查询我的收藏列表 -->
 	<select id="queryMyCollection" parameterType="int" resultMap="CollectResultMap">
-	SELECT c.collect_time,u.face,wu.face AS weibo_face,wu.nickname AS weibo_nickname,w.*
-	FROM collect AS c LEFT JOIN weibo AS w ON(c.weibo_id=w.weibo_id), USER AS u, USER AS wu
-	WHERE c.user_id=u.user_id AND c.weibo_id IN(
-		SELECT w.weibo_id
-		FROM weibo AS w
+	SELECT c.collect_time,u.face,wu.face AS eyoo_face,wu.nickname AS eyoo_nickname,w.*
+	FROM collect AS c LEFT JOIN eyoo AS w ON(c.eyoo_id=w.eyoo_id), USER AS u, USER AS wu
+	WHERE c.user_id=u.user_id AND c.eyoo_id IN(
+		SELECT w.eyoo_id
+		FROM eyoo AS w
 		WHERE c.user_id= #{params.userId}
 	) AND wu.user_id=w.user_id ORDER BY c.collect_time DESC
 	</select>

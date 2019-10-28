@@ -5,7 +5,7 @@ import java.util.Date;
 public class Collect {
     private Integer collectId;
 
-    private Integer weiboId;
+    private Integer eyooId;
 
     private Integer userId;
 
@@ -19,12 +19,12 @@ public class Collect {
         this.collectId = collectId;
     }
 
-    public Integer getWeiboId() {
-        return weiboId;
+    public Integer geteyooId() {
+        return eyooId;
     }
 
-    public void setWeiboId(Integer weiboId) {
-        this.weiboId = weiboId;
+    public void seteyooId(Integer eyooId) {
+        this.eyooId = eyooId;
     }
 
     public Integer getUserId() {

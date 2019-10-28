@@ -12,7 +12,7 @@ public interface CommentService {
 	void addComment(CommentCustom commentCustom) throws Exception;
 
 	// 查询微博下的评论
-	List<CommentCustom> queryComment(int weiboId) throws Exception;
+	List<CommentCustom> queryComment(int eyooId) throws Exception;
 
 	// 查询评论下回复数
 	int qeuryCountReply(Integer commentId) throws Exception;

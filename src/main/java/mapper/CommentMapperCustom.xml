@@ -4,7 +4,7 @@
 	<resultMap id="CommentResultMap" type="po.CommentCustom">
 		<id column="comment_id" property="commentId" jdbcType="INTEGER" />
 		<result column="user_id" property="userId" jdbcType="INTEGER" />
-		<result column="weibo_id" property="weiboId" jdbcType="INTEGER" />
+		<result column="eyoo_id" property="eyooId" jdbcType="INTEGER" />
 		<result column="comment_time" property="commentTime" jdbcType="TIMESTAMP" />
 		<result column="comment_content" property="commentContent" jdbcType="VARCHAR" />
 		<result column="face" property="user.face"/>
@@ -21,8 +21,8 @@
 			<result column="province" property="province" jdbcType="VARCHAR" />
 			<result column="city" property="city" jdbcType="VARCHAR" />
 		</association>
-		<association property="weibo" javaType="po.Weibo">
-			<id column="weibo_id" property="weiboId" jdbcType="INTEGER" />
+		<association property="eyoo" javaType="po.eyoo">
+			<id column="eyoo_id" property="eyooId" jdbcType="INTEGER" />
 			<result column="user_id" property="userId" jdbcType="INTEGER" />
 			<result column="post_time" property="postTime" jdbcType="TIMESTAMP" />
 			<result column="content" property="content" jdbcType="VARCHAR" />
@@ -33,15 +33,15 @@
 
 	<!-- 添加评论 -->
 	<insert id="addComment" parameterType="po.CommentCustom" keyProperty="comment_id" useGeneratedKeys="true">
-		insert into comment (user_id, weibo_id, comment_time, comment_content) 
-		VALUE(#{userId},#{weiboId},#{commentTime},#{commentContent})
+		insert into comment (user_id, eyoo_id, comment_time, comment_content)
+		VALUE(#{userId},#{eyooId},#{commentTime},#{commentContent})
 	</insert>
 
 	<!-- 查询微博Id的评论 -->
 	<select id="queryComment" parameterType="int" resultMap="CommentResultMap">
 		SELECT b.user_id,a.face,b.comment_id,a.face,b.comment_content,b.comment_time,a.nickname 
 		FROM USER AS a , COMMENT AS b
-		WHERE a.user_id=b.user_id AND b.weibo_id=#{weiboId}
+		WHERE a.user_id=b.user_id AND b.eyoo_id=#{eyooId}
 	</select>
 
 	<!-- 查询评论回复数 -->
@@ -56,10 +56,10 @@
 	
 	<!-- 根据userID查询评论列表 -->
 	<select id="queryCommentByUserId" parameterType="int" resultMap="CommentResultMap">
-		SELECT u.nickname,u.face,c.*,w.user_id, wu.nickname AS weibo_nickname, w.post_time, w.content
-		FROM COMMENT AS c,USER AS u, weibo AS w, USER AS wu
+		SELECT u.nickname,u.face,c.*,w.user_id, wu.nickname AS eyoo_nickname, w.post_time, w.content
+		FROM COMMENT AS c,USER AS u, eyoo AS w, USER AS wu
 		WHERE u.user_id=c.user_id 
-		AND w.weibo_id=c.weibo_id 
+		AND w.eyoo_id=c.eyoo_id
 		AND wu.user_id=w.user_id 
 		AND w.user_id=#{params.userId} 
 		ORDER BY c.comment_time DESC

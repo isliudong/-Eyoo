@@ -4,7 +4,7 @@ import java.util.List;
 
 import po.LikesCustom;
 import po.Page;
-import po.WeiboCustom;
+import po.eyooCustom;
 
 public interface LikesMapperCustom {
 
@@ -21,6 +21,6 @@ public interface LikesMapperCustom {
 	List<LikesCustom> queryLikesByUserId(Page<LikesCustom> page);
 
 	// 查询我的赞
-	List<LikesCustom> queryLikedWeiboSelf(Page<LikesCustom> page);
+	List<LikesCustom> queryLikedeyooSelf(Page<LikesCustom> page);
 
 }

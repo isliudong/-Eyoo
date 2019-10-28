@@ -43,9 +43,9 @@ public class CommentController {
 	@ResponseBody
 	public String queryComment(
 			HttpServletRequest request,
-			@RequestParam("weiboId") int weiboId) throws Exception {
+			@RequestParam("eyooId") int eyooId) throws Exception {
 		
-		List<CommentCustom> commentList = commentService.queryComment(weiboId);
+		List<CommentCustom> commentList = commentService.queryComment(eyooId);
 		for (CommentCustom commentCustom : commentList) {
 			commentCustom.setCountReply(commentService.qeuryCountReply(commentCustom.getCommentId()));
 			commentCustom.setTime(DateConvert.convert2json(commentCustom.getCommentTime().getTime()));

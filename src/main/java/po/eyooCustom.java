@@ -1,6 +1,6 @@
 package po;
 
-public class WeiboCustom extends Weibo {
+public class eyooCustom extends eyoo {
 
 	// 扩展user
 	private User user;
@@ -8,8 +8,8 @@ public class WeiboCustom extends Weibo {
 	// 扩展自定义的date String类型
 	private String date;
 
-	// 扩展转发weibo
-	private WeiboCustom repost;
+	// 扩展转发eyoo
+	private eyooCustom repost;
 
 	// 赞 0——否 1——是
 	private int likes;
@@ -66,11 +66,11 @@ public class WeiboCustom extends Weibo {
 		this.likes = likes;
 	}
 
-	public WeiboCustom getRepost() {
+	public eyooCustom getRepost() {
 		return repost;
 	}
 
-	public void setRepost(WeiboCustom repost) {
+	public void setRepost(eyooCustom repost) {
 		this.repost = repost;
 	}
 

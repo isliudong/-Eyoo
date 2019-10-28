@@ -2,8 +2,8 @@ package po;
 
 import java.util.Date;
 
-public class Weibo {
-    private Integer weiboId;
+public class eyoo {
+    private Integer eyooId;
 
     private Integer userId;
 
@@ -33,12 +33,12 @@ public class Weibo {
 
     private Integer repostId;
 
-    public Integer getWeiboId() {
-        return weiboId;
+    public Integer geteyooId() {
+        return eyooId;
     }
 
-    public void setWeiboId(Integer weiboId) {
-        this.weiboId = weiboId;
+    public void seteyooId(Integer eyooId) {
+        this.eyooId = eyooId;
     }
 
     public Integer getUserId() {

@@ -18,11 +18,11 @@
     width: 500px;
 }
 
-.leftweibo {
+.lefteyoo {
     -webkit-box-flex: 1;
 }
 
-.rightweibo {
+.righteyoo {
     margin-left: 10px;
     -webkit-box-flex: 1;
 }

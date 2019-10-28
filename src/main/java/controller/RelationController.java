@@ -76,13 +76,13 @@ public class RelationController {
 		UserCustom me = (UserCustom) session.getAttribute("user");
 		user.setUserId(userId);
 		// 微博数
-		int weiboCount = userService.queryWeiboCount(user.getUserId());
+		int eyooCount = userService.queryeyooCount(user.getUserId());
 		// 关注
 		int followCount = userService.queryFollowCount(user.getUserId());
 		// 粉丝
 		int fansCount = userService.queryFansCount(user.getUserId());
 
-		request.setAttribute("weiboCount", weiboCount);
+		request.setAttribute("eyooCount", eyooCount);
 		request.setAttribute("followCount", followCount);
 		request.setAttribute("fansCount", fansCount);
 
@@ -140,13 +140,13 @@ public class RelationController {
 		}
 
 		// 微博数
-		int weiboCount = userService.queryWeiboCount(user.getUserId());
+		int eyooCount = userService.queryeyooCount(user.getUserId());
 		// 关注
 		int followCount = userService.queryFollowCount(user.getUserId());
 		// 粉丝
 		int fansCount = userService.queryFansCount(user.getUserId());
 
-		request.setAttribute("weiboCount", weiboCount);
+		request.setAttribute("eyooCount", eyooCount);
 		request.setAttribute("followCount", followCount);
 		request.setAttribute("fansCount", fansCount);
 

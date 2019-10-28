@@ -4,7 +4,7 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50536
 Source Host           : localhost:3306
-Source Database       : weibo-demo
+Source Database       : eyoo-demo
 
 Target Server Type    : MYSQL
 Target Server Version : 50536
@@ -37,7 +37,7 @@ INSERT INTO `admin` VALUES ('1', 'admin', 'admin');
 DROP TABLE IF EXISTS `collect`;
 CREATE TABLE `collect` (
   `collect_id` int(11) NOT NULL AUTO_INCREMENT,
-  `weibo_id` int(11) DEFAULT NULL,
+  `eyoo_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `collect_time` datetime DEFAULT NULL,
   PRIMARY KEY (`collect_id`)
@@ -54,13 +54,13 @@ DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `comment_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '评论id',
   `user_id` int(11) DEFAULT NULL COMMENT '用户id',
-  `weibo_id` int(11) DEFAULT NULL COMMENT '微博id',
+  `eyoo_id` int(11) DEFAULT NULL COMMENT '微博id',
   `comment_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '评论时间',
   `comment_content` varchar(100) NOT NULL COMMENT '评论内容',
   PRIMARY KEY (`comment_id`),
   KEY `FK_sendcom` (`user_id`),
-  KEY `FK_getcom` (`weibo_id`),
-  CONSTRAINT `FK_getcom` FOREIGN KEY (`weibo_id`) REFERENCES `weibo` (`weibo_id`) ON DELETE CASCADE,
+  KEY `FK_getcom` (`eyoo_id`),
+  CONSTRAINT `FK_getcom` FOREIGN KEY (`eyoo_id`) REFERENCES `eyoo` (`eyoo_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_sendcom` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
 
@@ -75,12 +75,12 @@ DROP TABLE IF EXISTS `likes`;
 CREATE TABLE `likes` (
   `likes_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
-  `weibo_id` int(11) DEFAULT NULL,
+  `eyoo_id` int(11) DEFAULT NULL,
   `like_time` datetime DEFAULT NULL,
   PRIMARY KEY (`likes_id`),
   KEY `FK_sendlikes` (`user_id`),
-  KEY `FK_getlikes` (`weibo_id`),
-  CONSTRAINT `FK_getlikes` FOREIGN KEY (`weibo_id`) REFERENCES `weibo` (`weibo_id`) ON DELETE CASCADE,
+  KEY `FK_getlikes` (`eyoo_id`),
+  CONSTRAINT `FK_getlikes` FOREIGN KEY (`eyoo_id`) REFERENCES `eyoo` (`eyoo_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_sendlikes` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8;
 
@@ -600,11 +600,11 @@ CREATE TABLE `user` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for weibo
+-- Table structure for eyoo
 -- ----------------------------
-DROP TABLE IF EXISTS `weibo`;
-CREATE TABLE `weibo` (
-  `weibo_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '微博id',
+DROP TABLE IF EXISTS `eyoo`;
+CREATE TABLE `eyoo` (
+  `eyoo_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '微博id',
   `user_id` int(11) DEFAULT NULL COMMENT '用户id',
   `post_time` datetime DEFAULT NULL COMMENT '发送时间',
   `content` varchar(100) NOT NULL COMMENT '文字内容',
@@ -619,11 +619,11 @@ CREATE TABLE `weibo` (
   `pic9` varchar(50) DEFAULT NULL,
   `original` int(11) DEFAULT NULL,
   `repost_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`weibo_id`),
+  PRIMARY KEY (`eyoo_id`),
   KEY `FK_Relationship_1` (`user_id`),
   CONSTRAINT `FK_Relationship_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of weibo
+-- Records of eyoo
 -- ----------------------------

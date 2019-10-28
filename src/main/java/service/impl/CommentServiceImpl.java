@@ -25,10 +25,10 @@ public class CommentServiceImpl implements CommentService {
 		commentMapperCustom.addComment(commentCustom);
 	}
 
-	// 根据weiboId查询评论
+	// 根据eyooId查询评论
 	@Override
-	public List<CommentCustom> queryComment(int weiboId) throws Exception {
-		return commentMapperCustom.queryComment(weiboId);
+	public List<CommentCustom> queryComment(int eyooId) throws Exception {
+		return commentMapperCustom.queryComment(eyooId);
 	}
 
 	// 查询回复数

@@ -1,7 +1,7 @@
 $(function() {
     /*init webuploader*/
     var $list = $("#fileList");
-    var $btn = $("#postWeibo"); //开始上传  
+    var $btn = $("#posteyoo"); //开始上传
     var thumbnailWidth = 100; //缩略图高度和宽度 （单位是像素），当宽高度是0~1的时候，是按照百分比计算，具体可以看api文档  
     var thumbnailHeight = 100;
 

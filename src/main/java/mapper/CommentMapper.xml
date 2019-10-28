@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="po.Comment" >
     <id column="comment_id" property="commentId" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="weibo_id" property="weiboId" jdbcType="INTEGER" />
+    <result column="eyoo_id" property="eyooId" jdbcType="INTEGER" />
     <result column="comment_time" property="commentTime" jdbcType="TIMESTAMP" />
     <result column="comment_content" property="commentContent" jdbcType="VARCHAR" />
   </resultMap>
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    comment_id, user_id, weibo_id, comment_time, comment_content
+    comment_id, user_id, eyoo_id, comment_time, comment_content
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="po.CommentExample" >
     select
@@ -100,9 +100,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="po.Comment" >
-    insert into comment (comment_id, user_id, weibo_id, 
+    insert into comment (comment_id, user_id, eyoo_id,
       comment_time, comment_content)
-    values (#{commentId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{weiboId,jdbcType=INTEGER}, 
+    values (#{commentId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{eyooId,jdbcType=INTEGER},
       #{commentTime,jdbcType=TIMESTAMP}, #{commentContent,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="po.Comment" >
@@ -114,8 +114,8 @@
       <if test="userId != null" >
         user_id,
       </if>
-      <if test="weiboId != null" >
-        weibo_id,
+      <if test="eyooId != null" >
+        eyoo_id,
       </if>
       <if test="commentTime != null" >
         comment_time,
@@ -131,8 +131,8 @@
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
       </if>
-      <if test="weiboId != null" >
-        #{weiboId,jdbcType=INTEGER},
+      <if test="eyooId != null" >
+        #{eyooId,jdbcType=INTEGER},
       </if>
       <if test="commentTime != null" >
         #{commentTime,jdbcType=TIMESTAMP},
@@ -157,8 +157,8 @@
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.weiboId != null" >
-        weibo_id = #{record.weiboId,jdbcType=INTEGER},
+      <if test="record.eyooId != null" >
+        eyoo_id = #{record.eyooId,jdbcType=INTEGER},
       </if>
       <if test="record.commentTime != null" >
         comment_time = #{record.commentTime,jdbcType=TIMESTAMP},
@@ -175,7 +175,7 @@
     update comment
     set comment_id = #{record.commentId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
-      weibo_id = #{record.weiboId,jdbcType=INTEGER},
+      eyoo_id = #{record.eyooId,jdbcType=INTEGER},
       comment_time = #{record.commentTime,jdbcType=TIMESTAMP},
       comment_content = #{record.commentContent,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -188,8 +188,8 @@
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="weiboId != null" >
-        weibo_id = #{weiboId,jdbcType=INTEGER},
+      <if test="eyooId != null" >
+        eyoo_id = #{eyooId,jdbcType=INTEGER},
       </if>
       <if test="commentTime != null" >
         comment_time = #{commentTime,jdbcType=TIMESTAMP},
@@ -203,7 +203,7 @@
   <update id="updateByPrimaryKey" parameterType="po.Comment" >
     update comment
     set user_id = #{userId,jdbcType=INTEGER},
-      weibo_id = #{weiboId,jdbcType=INTEGER},
+      eyoo_id = #{eyooId,jdbcType=INTEGER},
       comment_time = #{commentTime,jdbcType=TIMESTAMP},
       comment_content = #{commentContent,jdbcType=VARCHAR}
     where comment_id = #{commentId,jdbcType=INTEGER}

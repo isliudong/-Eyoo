@@ -7,7 +7,7 @@ public class Likes {
 
 	private Integer userId;
 
-	private Integer weiboId;
+	private Integer eyooId;
 
 	private Date likeTime;
 
@@ -35,11 +35,11 @@ public class Likes {
 		this.userId = userId;
 	}
 
-	public Integer getWeiboId() {
-		return weiboId;
+	public Integer geteyooId() {
+		return eyooId;
 	}
 
-	public void setWeiboId(Integer weiboId) {
-		this.weiboId = weiboId;
+	public void seteyooId(Integer eyooId) {
+		this.eyooId = eyooId;
 	}
 }
