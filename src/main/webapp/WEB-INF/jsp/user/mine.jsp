@@ -61,7 +61,7 @@
 	<div class="container">
 		<div class="leftbox">
 			<!-- 头像 -->
-			<img src="/imgUpload/${user.face }" height="150px" width="150px"
+			<img src="imgUpload/${user.face }" height="150px" width="150px"
 				class="img-circle" align="center">
 		</div>
 		<div class="rightbox">
